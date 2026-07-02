@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "pnpm -r build"
   },
   "devEngines": {
@@ -14,8 +13,8 @@
     }
   },
   "devDependencies": {
-    "@types/node": "^26.0.1",
+    "@types/node": "^24.0.0",
     "ts-node": "^10.9.2",
-    "typescript": "^6.0.3"
+    "typescript": "^5.9.2"
   }
 }
