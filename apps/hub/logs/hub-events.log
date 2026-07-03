@@ -1,0 +1,5 @@
+{"type":"CLIENT_CONNECTED","timestamp":1783061645536,"payload":{"id":"test-computer-01","type":"WINDOWS_AGENT","socketId":"ftZRXuq4pBzSmX2iAAAB","connectedAt":1783061645531}}
+{"type":"CLIENT_CONNECTED","timestamp":1783061720612,"payload":{"id":"test-admin-01","type":"HUB_ADMIN","socketId":"qi70luNdl-fWPcwsAAAD","connectedAt":1783061720611}}
+{"type":"COMMAND_QUEUED","timestamp":1783061720639,"payload":{"id":"d51a7a73-bd11-4c1d-ae30-1ec4642c8430","computerId":"test-computer-01","name":"screenshot","args":{},"issuedBy":"test-admin-01","timestamp":1783061720641}}
+{"type":"COMMAND_SENT","timestamp":1783061720642,"payload":{"id":"d51a7a73-bd11-4c1d-ae30-1ec4642c8430","computerId":"test-computer-01","name":"screenshot","args":{},"issuedBy":"test-admin-01","timestamp":1783061720641}}
+{"type":"COMMAND_COMPLETED","timestamp":1783061720794,"payload":{"id":"4ac0caaf-7dc6-425b-83c9-1c045a4e40c9","commandId":"d51a7a73-bd11-4c1d-ae30-1ec4642c8430","computerId":"test-computer-01","success":true,"data":{"message":"Pretend result for \"screenshot\""},"timestamp":1783061720797}}
