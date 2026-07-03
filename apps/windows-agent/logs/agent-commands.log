@@ -7,3 +7,4 @@
 {"timestamp":1783082304015,"commandId":"be19cab1-cda9-43b5-980f-7f6fcdbde9f7","issuedBy":"204732736004137@lid","name":"shell","args":{"command":"ipconfig","shell":"cmd"},"success":true,"exitCode":0,"durationMs":513}
 {"timestamp":1783082398497,"commandId":"0d6c075b-727a-48e3-a099-bba7dcee541b","issuedBy":"204732736004137@lid","name":"shell","args":{"command":"Test-NetConnection google.com","shell":"powershell"},"success":false,"exitCode":1,"durationMs":30558}
 {"timestamp":1783082442077,"commandId":"f27b4e83-b30e-4557-b710-5396110ad1e5","issuedBy":"204732736004137@lid","name":"shell","args":{"command":"Test-NetConnection google.com","shell":"powershell"},"success":false,"exitCode":1,"durationMs":30832}
+{"timestamp":1783083550545,"commandId":"2f461cb3-a52b-4409-877a-452e4f377c76","issuedBy":"204732736004137@lid","name":"shell","args":{"command":"ipconfig","shell":"cmd"},"success":true,"exitCode":0,"durationMs":702}
