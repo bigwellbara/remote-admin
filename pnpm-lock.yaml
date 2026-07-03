@@ -250,6 +250,9 @@ importers:
       '@whiskeysockets/baileys':
         specifier: ^7.0.0-rc13
         version: 7.0.0-rc13(sharp@0.35.3(@types/node@24.13.2))
+      dotenv:
+        specifier: ^17.4.2
+        version: 17.4.2
       pino:
         specifier: ^9.6.0
         version: 9.14.0
@@ -812,6 +815,10 @@ packages:
   diff@4.0.4:
     resolution: {integrity: sha512-X07nttJQkwkfKfvTPG/KSnE2OMdcUCao6+eXF3wmnIQRn2aPAHH3VxDbDOdegkd6JbPsXqShpvEOHfAT+nCNwQ==}
     engines: {node: '>=0.3.1'}
+
+  dotenv@17.4.2:
+    resolution: {integrity: sha512-nI4U3TottKAcAD9LLud4Cb7b2QztQMUEfHbvhTH09bqXTxnSie8WnjPALV/WMCrJZ6UV/qHJ6L03OqO3LcdYZw==}
+    engines: {node: '>=12'}
 
   engine.io-client@6.6.6:
     resolution: {integrity: sha512-iY6QdftLQ9pyiPoX082bpf/u1UewnOaJrtJIF9T0++QB34lZrj0uP+Q/bj8AlUsAxqhnkTV2BS8SBZSxOmoV5Q==}
@@ -1444,6 +1451,8 @@ snapshots:
   detect-libc@2.1.2: {}
 
   diff@4.0.4: {}
+
+  dotenv@17.4.2: {}
 
   engine.io-client@6.6.6:
     dependencies:

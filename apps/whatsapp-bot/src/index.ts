@@ -1,5 +1,6 @@
-import { WAMessage } from "@whiskeysockets/baileys";
-import { loadConfig, isAuthorizedJid } from "./config.js";
+import "dotenv/config";
+import { WAMessage, jidNormalizedUser } from "@whiskeysockets/baileys";
+import { loadConfig } from "./config.js";
 import { parseMessage, getHelpText } from "./commands.js";
 import { HubClient } from "./hubClient.js";
 import { connectWhatsApp } from "./whatsapp.js";
@@ -7,22 +8,47 @@ import { connectWhatsApp } from "./whatsapp.js";
 const BOT_ID = "whatsapp-bot-01";
 
 function extractText(msg: WAMessage): string | null {
-  const message = msg.message;
-  if (!message) return null;
-  return (
-    message.conversation ??
-    message.extendedTextMessage?.text ??
-    null
-  );
+  const m = msg.message;
+  if (!m) return null;
+
+  // 1. direct text
+  const direct = m.conversation ?? m.extendedTextMessage?.text;
+  if (direct) return direct;
+
+  // 2. ephemeral wrapper (common for self-chat / disappearing messages)
+  const ephemeral = m.ephemeralMessage?.message;
+  if (ephemeral) {
+    return (
+      ephemeral.conversation ??
+      ephemeral.extendedTextMessage?.text ??
+      ephemeral.imageMessage?.caption ??
+      ephemeral.videoMessage?.caption ??
+      null
+    );
+  }
+
+  // 3. view-once wrapper
+  const viewOnce = m.viewOnceMessageV2?.message ?? m.viewOnceMessage?.message;
+  if (viewOnce) {
+    return (
+      viewOnce.conversation ??
+      viewOnce.extendedTextMessage?.text ??
+      viewOnce.imageMessage?.caption ??
+      viewOnce.videoMessage?.caption ??
+      null
+    );
+  }
+
+  return null;
 }
 
 async function main() {
   const config = loadConfig();
 
-  console.log(
-    `[BOT] Starting. Authorized numbers: ${config.authorizedNumbers.join(", ")}`
-  );
   console.log(`[BOT] Default target computer: ${config.defaultComputerId}`);
+  console.log(
+    "[BOT] Commands are only accepted from your own 'Message Yourself' chat."
+  );
 
   const hub = new HubClient({
     hubUrl: config.hubUrl,
@@ -33,20 +59,31 @@ async function main() {
   const wa = await connectWhatsApp();
 
   wa.onMessage(async (msg) => {
-    if (msg.key.fromMe) return; // ignore the bot's own outgoing messages
-
     const jid = msg.key.remoteJid;
     if (!jid) return;
 
-    if (!isAuthorizedJid(jid, config.authorizedNumbers)) {
-      console.log(`[BOT] Ignored message from unauthorized sender: ${jid}`);
+    const ownJids = wa.getOwnJids();
+    const normalizedJid = jidNormalizedUser(jid);
+    const isSelfChat = msg.key.fromMe === true && ownJids.includes(normalizedJid);
+
+    // console.log(
+    //   `[BOT][DEBUG] message from=${normalizedJid} fromMe=${msg.key.fromMe} ownJids=${JSON.stringify(ownJids)} accepted=${isSelfChat}`
+    // );
+
+    if (!isSelfChat) return;
+
+    // console.log("[BOT] Raw message:", JSON.stringify(msg.message, null, 2));
+
+    const text = extractText(msg);
+    console.log("[BOT] Extracted text:", text);
+
+    if (!text) {
+    //   console.log("[BOT] Could not extract text from this message shape");
       return;
     }
 
-    const text = extractText(msg);
-    if (!text) return;
-
     const parsed = parseMessage(text);
+    // console.log("[BOT] Parsed:", parsed);
 
     if (parsed.kind === "ignore") return;
 
@@ -65,9 +102,7 @@ async function main() {
       return;
     }
 
-    await wa.sock.sendMessage(jid, {
-      text: `Running: ${shellCommand}`,
-    });
+    await wa.sock.sendMessage(jid, { text: `Running: ${shellCommand}` });
 
     try {
       const response = await hub.sendShellCommand({
