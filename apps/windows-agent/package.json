@@ -1,0 +1,19 @@
+{
+  "name": "@remote-admin/windows-agent",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@remote-admin/protocol": "workspace:*",
+    "socket.io-client": "^4.8.1",
+    "systray2": "^2.1.4"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.2",
+    "tsx": "^4.19.0"
+  }
+}

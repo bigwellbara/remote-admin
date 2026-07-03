@@ -25,12 +25,19 @@ socket.on("connect", () => {
 socket.on("authenticated", (payload) => {
   console.log("[ADMIN] Authenticated:", payload);
 
+  // const command = createCommand({
+  //   computerId: TARGET_COMPUTER_ID,
+  //   name: "screenshot",
+  //   args: {},
+  //   issuedBy: ADMIN_ID,
+  // });
+
   const command = createCommand({
-    computerId: TARGET_COMPUTER_ID,
-    name: "screenshot",
-    args: {},
-    issuedBy: ADMIN_ID,
-  });
+  computerId: "DESKTOP-T0U7ARQ",
+  name: "shell",
+  args: { command: "echo hello from remote-admin", shell: "cmd" },
+  issuedBy: ADMIN_ID,
+});
 
   console.log("[ADMIN] Sending command:", command);
   socket.emit("command", command);

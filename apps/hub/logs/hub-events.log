@@ -3,3 +3,10 @@
 {"type":"COMMAND_QUEUED","timestamp":1783061720639,"payload":{"id":"d51a7a73-bd11-4c1d-ae30-1ec4642c8430","computerId":"test-computer-01","name":"screenshot","args":{},"issuedBy":"test-admin-01","timestamp":1783061720641}}
 {"type":"COMMAND_SENT","timestamp":1783061720642,"payload":{"id":"d51a7a73-bd11-4c1d-ae30-1ec4642c8430","computerId":"test-computer-01","name":"screenshot","args":{},"issuedBy":"test-admin-01","timestamp":1783061720641}}
 {"type":"COMMAND_COMPLETED","timestamp":1783061720794,"payload":{"id":"4ac0caaf-7dc6-425b-83c9-1c045a4e40c9","commandId":"d51a7a73-bd11-4c1d-ae30-1ec4642c8430","computerId":"test-computer-01","success":true,"data":{"message":"Pretend result for \"screenshot\""},"timestamp":1783061720797}}
+{"type":"CLIENT_DISCONNECTED","timestamp":1783064345091,"payload":{"id":"test-admin-01","type":"HUB_ADMIN"}}
+{"type":"CLIENT_DISCONNECTED","timestamp":1783064345097,"payload":{"id":"test-computer-01","type":"WINDOWS_AGENT"}}
+{"type":"CLIENT_CONNECTED","timestamp":1783064627992,"payload":{"id":"DESKTOP-T0U7ARQ","type":"WINDOWS_AGENT","socketId":"w8n1jUVfCSMeBcR_AAAB","connectedAt":1783064627989}}
+{"type":"CLIENT_CONNECTED","timestamp":1783064821131,"payload":{"id":"test-admin-01","type":"HUB_ADMIN","socketId":"1bBDXDEiu1ge54LDAAAD","connectedAt":1783064821126}}
+{"type":"COMMAND_QUEUED","timestamp":1783064821179,"payload":{"id":"51940d3e-7ef8-41ed-9007-1c87867fa87e","computerId":"DESKTOP-T0U7ARQ","name":"shell","args":{"command":"echo hello from remote-admin","shell":"cmd"},"issuedBy":"test-admin-01","timestamp":1783064821165}}
+{"type":"COMMAND_SENT","timestamp":1783064821180,"payload":{"id":"51940d3e-7ef8-41ed-9007-1c87867fa87e","computerId":"DESKTOP-T0U7ARQ","name":"shell","args":{"command":"echo hello from remote-admin","shell":"cmd"},"issuedBy":"test-admin-01","timestamp":1783064821165}}
+{"type":"COMMAND_COMPLETED","timestamp":1783064822097,"payload":{"id":"1e22eff2-3737-49ae-8e78-62040774f48c","commandId":"51940d3e-7ef8-41ed-9007-1c87867fa87e","computerId":"DESKTOP-T0U7ARQ","success":true,"data":{"stdout":"hello from remote-admin\r\n","stderr":"","exitCode":0,"durationMs":884},"timestamp":1783064822094}}
